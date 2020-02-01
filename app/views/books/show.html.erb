@@ -1,10 +1,14 @@
 
-<%= link_to "#{@book.user.name}", user_path(params[:id]) %>
-<%= link_to "#{@book.title}", book_path(@book.id) %>
-<%= @book.body %>
-<% if @book.user == current_user %>
-	<%= link_to "edit", edit_book_path(@book.id) %>
-	<%= link_to "delete", book_path(@book.id), method: :delete %>
-<% end %>
+<div>
+	<%= attachment_image_tag @book.user, :profile_image, size: "30x30", fallback: "images.png" %>
+	<%= link_to "#{@book.user.name}", user_path(params[:id]) %>
+	<%= link_to "#{@book.title}", book_path(@book.id) %>
+	<%= @book.body %>
 
-<!--最初はeachメソッドを使っていたが、findメソッドは一つを持ってくるのでeachメソッドは使えなかった。ただのインスタンス変数を入れるだけでいい-->
+	<% if @book.user == current_user %>
+		<%= link_to "edit", edit_book_path(@book.id) %>
+		<%= link_to "delete", book_path(@book.id), method: :delete %>
+	<% end %>
+
+	<!--最初はeachメソッドを使っていたが、findメソッドは一つを持ってくるのでeachメソッドは使えなかった。ただのインスタンス変数を入れるだけでいい-->
+</div>

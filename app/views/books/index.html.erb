@@ -1,23 +1,27 @@
-    <% if @book.errors.any? %>
-        <%= @book.errors.count %>件のエラーが発生しました
-        <% @book.errors.full_messages.each do |message| %>
-            <%= message %>
-        <% end %>
-    <% end %>
+<div>
+	<% if @book.errors.any? %>
+	    <%= @book.errors.count %>件のエラーが発生しました
+	    <% @book.errors.full_messages.each do |message| %>
+	        <%= message %>
+	    <% end %>
+	<% end %>
 
-<%= form_for(@book) do |f| %>
+	<%= form_for(@book) do |f| %>
 
-    <%= f.text_field :title, placeholder:"Title" %>
-    <%= f.text_area :body, placeholder:"Body" %>
-    <%= f.submit %>
-<% end %>
-
+	    <%= f.text_field :title, placeholder:"Title" %>
+	    <%= f.text_area :body, placeholder:"Body" %>
+	    <%= f.submit %>
+	<% end %>
+</div>
 
 
 <div>
 	<!--<h>aaaa</h>-->
 	<% @books.each do |book| %>
 	<!--userの画像載せる-->
+	<%= link_to user_path(book.user_id) do %>
+		<%= attachment_image_tag book.user, :profile_image, size: "30x30", fallback: "images.png" %>
+	<% end %>
 	<li>
 		<%= link_to "#{book.title}", book_path(book.id) %> <!--<%= book.title %>-->
 	</li>

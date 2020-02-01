@@ -11,6 +11,10 @@
 
   <body>
 
+  <% if flash[:notice] %>
+  <%= flash[:notice] %>
+  <% end %>
+
   <header>
   <div class="container">
     <nav>
@@ -26,7 +30,7 @@
             <%= link_to "Books", books_path %>
           </li>
           <li>
-            <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            <%= link_to "logout", destroy_user_session_path, method: :delete %>
           </li>
         <% else %>
           <li>
@@ -36,10 +40,10 @@
             <%= link_to "About", abouts_path %>
           </li>
           <li>
-            <%= link_to "Sigh Up", new_user_registration_path %>
+            <%= link_to "Sign up", new_user_registration_path %>
           </li>
           <li>
-            <%= link_to "Login", new_user_session_path %>
+            <%= link_to "login", new_user_session_path %>
           </li>
         <% end %>
       </ul>
