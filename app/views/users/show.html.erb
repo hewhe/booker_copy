@@ -1,2 +1,21 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div>
+	<!--<h>aaaa</h>-->
+
+		<!--userの画像載せる-->
+		<%= @user.name %>
+		<%= @user.introduction %>
+
+	<% @user.books.each do |book| %>
+	<!--userの画像載せる-->
+	<li>
+		<%= link_to "#{book.title}", book_path(book.id) %> <!--<%= book.title %>-->
+	</li>
+	<li>
+		<%= book.body %>
+	</li>
+	<% end %>
+
+	<% if @user.id == current_user %>
+		<%= link_to "edit", edit_user_path(@user.id) %>
+	<% end %>
+</div>

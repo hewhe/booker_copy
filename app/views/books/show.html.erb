@@ -1,0 +1,10 @@
+
+<%= link_to "#{@book.user.name}", user_path(params[:id]) %>
+<%= link_to "#{@book.title}", book_path(@book.id) %>
+<%= @book.body %>
+<% if @book.user == current_user %>
+	<%= link_to "edit", edit_book_path(@book.id) %>
+	<%= link_to "delete", book_path(@book.id), method: :delete %>
+<% end %>
+
+<!--最初はeachメソッドを使っていたが、findメソッドは一つを持ってくるのでeachメソッドは使えなかった。ただのインスタンス変数を入れるだけでいい-->
