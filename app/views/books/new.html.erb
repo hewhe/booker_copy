@@ -1,0 +1,13 @@
+<%= form_for(@book) do |f| %>
+
+    <% if @book.errors.any? %>
+        <%= @book.errors.count %>件のエラーが発生しました
+        <% @book.errors.full_messages.each do |message| %>
+            <%= message %>
+        <% end %>
+    <% end %>
+
+    <%= f.text_field :title, placeholder:"Title" %>
+    <%= f.text_area :body, placeholder:"Body" %>
+    <%= f.submit %>
+<% end %>

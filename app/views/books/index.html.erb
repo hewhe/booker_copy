@@ -1,0 +1,12 @@
+<div>
+	<h>aaaa</h>
+	<% @books.each do |book| %>
+	<!--userの画像載せる-->
+	<li>
+		<%= link_to "#{book.title}", book_path(book.id) %> <!--<%= book.title %>-->
+	</li>
+	<li>
+		<%= book.body %>
+	</li>
+	<% end %>
+</div>
