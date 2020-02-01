@@ -1,11 +1,12 @@
 <div>
 	<!--<h>aaaa</h>-->
-	<!--userの画像載せる-->
+	<%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "" %>
 	<%= @user.name %>
 	<%= @user.introduction %>
 
 	<% @user.books.each do |book| %>
 	<!--userの画像載せる-->
+	<%= attachment_image_tag book.user, :profile_image, format: 'jpeg', fallback: "" %>
 	<li>
 		<%= link_to "#{book.title}", book_path(book.id) %> <!--<%= book.title %>-->
 	</li>

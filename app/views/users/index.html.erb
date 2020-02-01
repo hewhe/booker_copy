@@ -1,4 +1,5 @@
 <% @users.each do |user| %> <!--eachに＝をつけて表示させるとパラメーターが確認できる-->
+	<%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "" %>
 	<%= user.name %>
 	<%= link_to "show", user_path(user.id) %>
 <% end %>
