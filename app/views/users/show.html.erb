@@ -1,9 +1,8 @@
 <div>
 	<!--<h>aaaa</h>-->
-
-		<!--userの画像載せる-->
-		<%= @user.name %>
-		<%= @user.introduction %>
+	<!--userの画像載せる-->
+	<%= @user.name %>
+	<%= @user.introduction %>
 
 	<% @user.books.each do |book| %>
 	<!--userの画像載せる-->
@@ -15,7 +14,9 @@
 	</li>
 	<% end %>
 
-	<% if @user.id == current_user %>
+	<% if @user.id == current_user.id %>
+	<li>
 		<%= link_to "edit", edit_user_path(@user.id) %>
+	</li>
 	<% end %>
 </div>

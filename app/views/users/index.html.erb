@@ -1,4 +1,4 @@
-<%= @users.each do |user| %>
+<% @users.each do |user| %> <!--eachに＝をつけて表示させるとパラメーターが確認できる-->
 	<%= user.name %>
 	<%= link_to "show", user_path(user.id) %>
 <% end %>
