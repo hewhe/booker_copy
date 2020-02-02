@@ -2,19 +2,40 @@
 	<!--<h>aaaa</h>-->
 	<div class="row">
 		<div class="col-md-4">
-			<%= attachment_image_tag @user, :profile_image, size: "70x70", fallback: "images.png" %>
-			<p><%= @user.name %></p>
-			<p><%= @user.introduction %></p>
-			<% if @user.id == current_user.id %>
-				<p>
-					<%= link_to "edit", edit_user_path(@user.id) %>
-				</p>
-			<% end %>
+			<div>
+				<h1>User info</h1>
+				<%= attachment_image_tag @user, :profile_image, size: "70x70", fallback: "images.png" %>
+				<p><%= @user.name %></p>
+				<p><%= @user.introduction %></p>
+				<% if @user.id == current_user.id %>
+					<p>
+						<%= link_to "edit", edit_user_path(@user.id) %>
+					</p>
+				<% end %>
+			</div>
+
+			<div>
+				<h1>New book</h1>
+				<% if @booknew.errors.any? %>
+				    <%= @booknew.errors.count %>件のエラーが発生しました
+				    <% @booknew.errors.full_messages.each do |message| %>
+				        <%= message %>
+				    <% end %>
+				<% end %>
+
+				<%= form_for(@booknew) do |f| %>
+					<%= f.label :title, "Title" %><br>
+				    <%= f.text_field :title, placeholder:"Title" %><br>
+				    <%= f.label :body, "Opinion" %><br>
+				    <%= f.text_area :body, placeholder:"Body" %>
+				    <%= f.submit %>
+				<% end %>
+			</div>
 		</div>
 
 		<div class="col-md-8">
-			<% @user.books.each do |book| %>
-				<table>
+			<h1>Books</h1>
+			<table>
 					<tr>
 						<th>
 							gazouooo
@@ -26,10 +47,13 @@
 							Opinion
 						</th>
 					</tr>
+				<% @user.books.each do |book| %>
 					<!--userの画像載せる-->
 					<tr>
 						<td>
-						<%= attachment_image_tag book.user, :profile_image, size: "30x30", fallback: "images.png" %>
+							<%= link_to user_path(current_user.id) do %>
+								<%= attachment_image_tag book.user, :profile_image, size: "30x30", fallback: "images.png" %>
+							<% end %>
 						</td>
 						<td>
 							<%= link_to "#{book.title}", book_path(book.id) %> <!--<%= book.title %>-->
@@ -38,8 +62,8 @@
 							<%= book.body %>
 						</td>
 					</tr>
-				</table>
-			<% end %>
+				<% end %>
+			</table>
 		</div>
 	</div>
 </div>

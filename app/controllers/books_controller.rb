@@ -1,12 +1,14 @@
 class BooksController < ApplicationController
 	before_action :authenticate_user!
+	before_action :correct_user, only: [:edit, :update]
 	def index
 		@books = Book.all
-		@book = Book.new #newのviewはそのうち消す
+		@booknew = Book.new #newのviewはそのうち消す
 	end
 
 	def show
 		@book = Book.find(params[:id])
+		@booknew = Book.new
 	end
 
 	def new
@@ -20,7 +22,9 @@ class BooksController < ApplicationController
 			flash[:notice] = "successfully created"
 		redirect_to book_path(@book.id)
 		else
+			flash[:notice] = "error"
 			@books = Book.all
+			@book = Book.new
 			render :index
 		end
 	end
@@ -49,5 +53,12 @@ class BooksController < ApplicationController
 	private
 		def book_params
 			params.require(:book).permit(:title, :body)
+		end
+
+		def correct_user
+			book = Book.find(params[:id])
+			if current_user.id != book.user.id
+				redirect_to books_path
+			end
 		end
 end

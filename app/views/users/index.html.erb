@@ -1,22 +1,55 @@
 <div class="container">
 	<div class=row>
 		<div class="col-md-4">
-			<%= attachment_image_tag current_user, :profile_image, size: "70x70", fallback: "images.png" %>
-			<p><%= current_user.name %></p>
-			<p><%= current_user.introduction %></p>
-			<% if user_signed_in? %>
-				<p>
-					<%= link_to "edit", edit_user_path(current_user.id) %>
-				</p>
-			<% end %>
+			<div>
+				<h1>User info</h1>
+				<%= attachment_image_tag current_user, :profile_image, size: "70x70", fallback: "images.png" %>
+				<p><%= current_user.name %></p>
+				<p><%= current_user.introduction %></p>
+				<% if user_signed_in? %>
+					<p>
+						<%= link_to "edit", edit_user_path(current_user.id) %>
+					</p>
+				<% end %>
+			</div>
+
+			<div>
+				<h1>New book</h1>
+				<% if @booknew.errors.any? %>
+				    <%= @booknew.errors.count %>件のエラーが発生しました
+				    <% @booknew.errors.full_messages.each do |message| %>
+				        <%= message %>
+				    <% end %>
+				<% end %>
+
+				<%= form_for(@booknew) do |f| %>
+					<%= f.label :title, "Title" %><br>
+				    <%= f.text_field :title, placeholder:"Title" %><br>
+				    <%= f.label :body, "Opinion" %><br>
+				    <%= f.text_area :body, placeholder:"Body" %>
+				    <%= f.submit %>
+				<% end %>
+			</div>
 		</div>
 
 		<div class="col-md-8">
-			<% @users.each do |user| %> <!--eachに＝をつけて表示させるとパラメーターが確認できる-->
-				<%= attachment_image_tag user, :profile_image, size: "30x30", fallback: "images.png" %>
-				<%= user.name %>
-				<%= link_to "show", user_path(user.id) %>
-			<% end %>
+			<h1>Books</h1>
+			<table>
+				<tr>
+					<th>Image</th>
+					<th>name</th>
+					<th>showooo</th>
+				</tr>
+				<% @users.each do |user| %> <!--eachに＝をつけて表示させるとパラメーターが確認できる-->
+					<tr>
+						<td>
+							<%= attachment_image_tag user, :profile_image, size: "30x30", fallback: "images.png" %>
+						</td>
+						<td><%= user.name %></td>
+						<td><%= link_to "show", user_path(user.id) %></td>
+					</tr>
+				<% end %>
+			</table>
 		</div>
 	</div>
 </div>

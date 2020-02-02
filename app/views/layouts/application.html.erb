@@ -11,9 +11,6 @@
 
   <body>
 
-  <% if flash[:notice] %>
-  <%= flash[:notice] %>
-  <% end %>
 
   <header>
   <div class="container">
@@ -50,6 +47,9 @@
     </nav>
   </div>
   </header>
+  <% if flash[:notice] %>
+  <%= flash[:notice] %>
+  <% end %>
 
     <%= yield %>
   </body>

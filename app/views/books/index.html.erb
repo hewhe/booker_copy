@@ -2,6 +2,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div>
+				<h1>User info</h1>
 				<%= attachment_image_tag current_user, :profile_image, size: "70x70", fallback: "images.png" %>
 				<p><%= current_user.name %></p>
 				<p><%= current_user.introduction %></p>
@@ -13,16 +14,18 @@
 			</div>
 
 			<div>
-				<% if @book.errors.any? %>
-				    <%= @book.errors.count %>件のエラーが発生しました
-				    <% @book.errors.full_messages.each do |message| %>
+				<h1>New book</h1>
+				<% if @booknew.errors.any? %>
+				    <%= @booknew.errors.count %>件のエラーが発生しました
+				    <% @booknew.errors.full_messages.each do |message| %>
 				        <%= message %>
 				    <% end %>
 				<% end %>
 
-				<%= form_for(@book) do |f| %>
-
-				    <%= f.text_field :title, placeholder:"Title" %>
+				<%= form_for(@booknew) do |f| %>
+					<%= f.label :title, "Title" %><br>
+				    <%= f.text_field :title, placeholder:"Title" %><br>
+				    <%= f.label :body, "Opinion" %><br>
 				    <%= f.text_area :body, placeholder:"Body" %>
 				    <%= f.submit %>
 				<% end %>
@@ -31,19 +34,30 @@
 
 
 		<div class="col-md-8">
-			<!--<h>aaaa</h>-->
-			<% @books.each do |book| %>
-			<!--userの画像載せる-->
-			<%= link_to user_path(book.user_id) do %>
-				<%= attachment_image_tag book.user, :profile_image, size: "30x30", fallback: "images.png" %>
-			<% end %>
-			<li>
-				<%= link_to "#{book.title}", book_path(book.id) %> <!--<%= book.title %>-->
-			</li>
-			<li>
-				<%= book.body %>
-			</li>
-			<% end %>
+			<h1>Books</h1>
+			<table>
+				<tr>
+					<th>gazouoooo</th>
+					<th>Title</th>
+					<th>Opinion</th>
+				</tr>
+				<% @books.each do |book| %>
+				<tr>
+					<td>
+					<!--userの画像載せる-->
+						<%= link_to user_path(book.user_id) do %>
+							<%= attachment_image_tag book.user, :profile_image, size: "30x30", fallback: "images.png" %>
+						<% end %>
+					</td>
+					<td>
+						<%= link_to "#{book.title}", book_path(book.id) %> <!--<%= book.title %>-->
+					</td>
+					<td>
+						<%= book.body %>
+					</td>
+				</tr>
+				<% end %>
+			</table>
 		</div>
 	</div>
 </div>
