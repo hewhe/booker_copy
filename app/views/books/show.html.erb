@@ -28,7 +28,7 @@
 			<div>
 				<h1>New book</h1>
 				<% if @booknew.errors.any? %>
-				    <%= @booknew.errors.count %>件のエラーが発生しました
+				    <%= @booknew.errors.count %>件のerroが発生しました
 				    <% @booknew.errors.full_messages.each do |message| %>
 				        <%= message %>
 				    <% end %>
