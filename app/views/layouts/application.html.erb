@@ -13,6 +13,7 @@
 
 
   <header>
+  <h1>Bookers</h1>
   <div class="container">
     <nav>
       <ul>
@@ -34,7 +35,7 @@
             <%= link_to "Home", root_path %>
           </li>
           <li>
-            <%= link_to "About", abouts_path %>
+            <%= link_to "About", home_about_path %>
           </li>
           <li>
             <%= link_to "Sign up", new_user_registration_path %>
@@ -48,9 +49,8 @@
   </div>
   </header>
   <% if flash[:notice] %>
-  <%= flash[:notice] %>
+    <%= flash[:notice] %>
   <% end %>
-
     <%= yield %>
   </body>
 </html>

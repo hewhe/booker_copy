@@ -24,7 +24,7 @@ class BooksController < ApplicationController
 		else
 			flash[:notice] = "error"
 			@books = Book.all
-			@book = Book.new
+			@booknew = Book.new
 			render :index
 		end
 	end

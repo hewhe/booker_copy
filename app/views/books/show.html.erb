@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<div>
 				<h1>User info</h1>
 				<%= attachment_image_tag @book.user, :profile_image, size: "70x70", fallback: "images.png" %>
@@ -32,7 +32,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-8">
+		<div class="col-md-9">
 			<h1>Book detail</h1>
 			<table>
 				<tr>
@@ -53,8 +53,8 @@
 
 					<td>
 						<% if @book.user == current_user %>
-							<%= link_to "edit", edit_book_path(@book.id) %>
-							<%= link_to "delete", book_path(@book.id), method: :delete %>
+							<%= link_to "Edit", edit_book_path(@book.id) %>
+							<%= link_to "Destroy", book_path(@book.id), method: :delete %>
 						<% end %>
 					</td>
 				</tr>
