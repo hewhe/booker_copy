@@ -1,14 +1,27 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<%= attachment_image_tag @book.user, :profile_image, size: "70x70", fallback: "images.png" %>
+			<p><%= @book.user.name %></p>
+			<p><%= @book.user.introduction %></p>
+			<% if @book.user.id == current_user.id %>
+			<p>
+			<%= link_to "edit", edit_user_path(current_user.id) %>
+			</p>
+			<% end %>
+		</div>
+		<div class="col-md-8">
+			<%= attachment_image_tag @book.user, :profile_image, size: "30x30", fallback: "images.png" %>
+			<%= link_to "#{@book.user.name}", user_path(params[:id]) %>
+			<%= link_to "#{@book.title}", book_path(@book.id) %>
+			<%= @book.body %>
 
-<div>
-	<%= attachment_image_tag @book.user, :profile_image, size: "30x30", fallback: "images.png" %>
-	<%= link_to "#{@book.user.name}", user_path(params[:id]) %>
-	<%= link_to "#{@book.title}", book_path(@book.id) %>
-	<%= @book.body %>
+			<% if @book.user == current_user %>
+				<%= link_to "edit", edit_book_path(@book.id) %>
+				<%= link_to "delete", book_path(@book.id), method: :delete %>
+			<% end %>
 
-	<% if @book.user == current_user %>
-		<%= link_to "edit", edit_book_path(@book.id) %>
-		<%= link_to "delete", book_path(@book.id), method: :delete %>
-	<% end %>
-
-	<!--最初はeachメソッドを使っていたが、findメソッドは一つを持ってくるのでeachメソッドは使えなかった。ただのインスタンス変数を入れるだけでいい-->
+			<!--最初はeachメソッドを使っていたが、findメソッドは一つを持ってくるのでeachメソッドは使えなかった。ただのインスタンス変数を入れるだけでいい-->
+		</div>
+	</div>
 </div>

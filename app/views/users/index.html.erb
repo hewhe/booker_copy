@@ -1,8 +1,22 @@
+<div class="container">
+	<div class=row>
+		<div class="col-md-4">
+			<%= attachment_image_tag current_user, :profile_image, size: "70x70", fallback: "images.png" %>
+			<p><%= current_user.name %></p>
+			<p><%= current_user.introduction %></p>
+			<% if user_signed_in? %>
+				<p>
+					<%= link_to "edit", edit_user_path(current_user.id) %>
+				</p>
+			<% end %>
+		</div>
 
-<div>
-	<% @users.each do |user| %> <!--eachに＝をつけて表示させるとパラメーターが確認できる-->
-		<%= attachment_image_tag user, :profile_image, size: "30x30", fallback: "images.png" %>
-		<%= user.name %>
-		<%= link_to "show", user_path(user.id) %>
-	<% end %>
+		<div class="col-md-8">
+			<% @users.each do |user| %> <!--eachに＝をつけて表示させるとパラメーターが確認できる-->
+				<%= attachment_image_tag user, :profile_image, size: "30x30", fallback: "images.png" %>
+				<%= user.name %>
+				<%= link_to "show", user_path(user.id) %>
+			<% end %>
+		</div>
+	</div>
 </div>
