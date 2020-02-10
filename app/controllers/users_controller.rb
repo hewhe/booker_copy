@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def update
 	@user = User.find(params[:id])
-	@user.id = current_user.id
+	@user.id = current_user.id #何してんの？これ?モデルの紐付けに必要だからuserにはいらない
 	if @user.update(user_params)
 	flash[:notice] = "successfully Updated"
 	redirect_to user_path(@user.id)
